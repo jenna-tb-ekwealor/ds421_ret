@@ -1,0 +1,112 @@
+everglades notes
+
+matlab tutorials:
+It is often useful, when entering a matrix, to suppress the display; this is done by ending the line with a semicolon (see the first example in the next section). The command more can be used to cause Matlab to display only one page of output at a time. Typing more on causes Matlab to pause between pages of output from subsequent commands; as with the Unix ``more'' command, a space character then advances the output by a page, a carriage return advances the output one line, and the character ``q'' ends the output. Once the command more on is issued, this feature is enabled until the command more off is given.
+
+
+
+Arithmetic operations on matrices
+
+Matlab can perform the standard arithmetic operations on matrices, vectors, and scalars (that is, on 2-, 1-, and 0-dimensional arrays): addition, subtraction, and multiplication. In addition, Matlab defines a notion of matrix division as well as ``vectorized'' operations. All vectorized operations (these include addition, subtraction, and scalar multiplication, as explained below) can be applied to n-dimensional arrays for any value of n, but multiplication and division are restricted to matrices and vectors (n less than or equal to 2).
+
+
+formatting display and graphics
+
+format
+format short 3.1416
+format short e 3.1416e+00
+format long 3.14159265358979
+format long e 3.141592653589793e+00
+format compact suppresses extra line feeds (all of the output in this paper is in compact format).
+xlabel('string'), ylabel('string') label the horizontal and vertical axes, respectively, in the current plot;
+title('string') add a title to the current plot;
+axis([a b c d]) change the window on the current graph to  tex2html_wrap_inline719 ;
+grid adds a rectangular grid to the current plot;
+hold on freezes the current plot so that subsequent graphs will be displayed with the current;
+hold off releases the current plot; the next plot will erase the current before displaying;
+subplot puts multiple plots in one graphics window.
+
+
+Miscellaneous
+
+max(x) returns the largest entry of x, if x is a vector; see help max for the result when x is a k-dimensional array;
+min(x) analogous to max;
+abs(x) returns an array of the same size as x whose entries are the magnitudes of the entries of x;
+size(A) returns a  tex2html_wrap_inline723 vector with the number of rows, columns, etc. of the k-dimensional array A;
+length(x) returns the ``length'' of the array, i.e. max(size(A)).
+save fname saves the current variables to the file named fname.mat;
+load fname load the variables from the file named fname.mat;
+quit exits Matlab
+
+
+
+
+
+
+
+
+
+
+After converting the image to a binary image, you can use the bwlabel function to determine the number of grains of rice in the image. The bwlabel function labels all the components in the binary image bw and returns the number of components it finds in the image in the output value, numObjects.
+
+[labeled,numObjects] = bwlabel(bw,4);
+
+numObjects 
+ans = 
+
+   101
+The accuracy of the results depends on a number of factors, including
+
+The size of the objects
+Whether or not any objects are touching (in which case they might be labeled as one object)
+The accuracy of the approximated background
+The connectivity selected. The parameter 4, passed to the bwlabel function, means that pixels must touch along an edge to be considered connected. For more information about the connectivity of objects, see Pixel Connectivity.
+
+
+
+#could be useful for visualizing annd categorizing size of ridges
+9. Display the Label Matrix as a Pseudocolor Indexed Image
+A good way to view a label matrix is to display it as a pseudocolor indexed image. In the pseudocolor image, the number that identifies each object in the label matrix maps to a different color in the associated colormap matrix. The colors in the image make objects easier to distinguish.
+
+To view a label matrix in this way, use the label2rgb function. Using this function, you can specify the colormap, the background color, and how objects in the label matrix map to colors in the colormap.
+
+pseudo_color = label2rgb(labeled, @spring, 'c', 'shuffle');
+imshow(pseudo_color); 
+
+
+if expr1
+   statements
+elseif expr2
+   statements
+ .
+ .
+ .
+else
+   statements
+end
+The first block of statements following a nonzero expr executes.
+
+
+A for-loop repeats the statements in the loop as the loop index takes on the values in a given row vector
+
+
+A = slate %need to format correctly
+
+
+%matrix is rows x columns
+
+%test
+A = [
+0 0 0 1 1 0 0 0;
+0 0 1 1 1 0 0 0;
+0 0 1 1 1 1 1 0;
+0 1 1 1 1 1 0 0;
+0 0 1 1 1 1 0 0;
+0 0 0 1 1 0 0 0;
+0 0 0 0 1 0 0 0]
+
+             
+  state                     254x186             377952  double    global    
+  state2                    508x186             755904  double    global    
+
+A2=A(ceil((1:2*size(A,1))/2), :);
